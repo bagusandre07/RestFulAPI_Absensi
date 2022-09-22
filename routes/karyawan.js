@@ -29,7 +29,22 @@ database.query(query,[data.username,data.password],(err,rows)=>{
 
 })
 });
-
+router.get('/history', (req, res) => {
+        var query = "SELECT * FROM record WHERE username=?";
+        var data = req.query;
+        
+        database.query(query,[data.username],(err,rows)=>{
+                if (!err) {
+                        if (rows.length == 0) {
+                                return res.status(204).json({status:"false"});
+                        }else{
+                                return res.status(200).json(rows);
+                        }
+                } return res.status(500).json(err);
+        
+        
+        })
+        });
 
 router.get('/finduser', (req, res) => {
         var query = "SELECT * FROM karyawan WHERE username=?";
@@ -47,4 +62,6 @@ router.get('/finduser', (req, res) => {
                 
         })
         });
+        
+
 module.exports = router;

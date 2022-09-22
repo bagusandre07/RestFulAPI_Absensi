@@ -6,7 +6,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use('/karyawan',karyawanRoutes);
 app.use('/record',recordRoutes);
-app.use('/');
 
 module.exports = app;
 
